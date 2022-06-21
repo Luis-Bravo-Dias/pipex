@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 11:01:20 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/06/21 15:47:51 by lleiria-         ###   ########.fr       */
+/*   Created: 2022/06/21 15:11:45 by lleiria-          #+#    #+#             */
+/*   Updated: 2022/06/21 16:01:00 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../pipex.h"
 
-# include "ft_printf/ft_printf.h"
-# include "libft/libft.h"
-# include <stdio.h>
-# include <errno.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
+void	verify(int fd)
+{
+	if (fd == -1)
+		perror("");
+}
 
-//main.c
-void	verify(int fd);
+int	main(int ac, char **av)
+{
+	int	fd;
 
-#endif
+	if (ac < 4)
+		ft_printf("Insufficient arguments\n");
+	else
+	{
+		fd = open(av[1], O_RDONLY);
+		verify (fd);
+	}
+	return (0);
+}

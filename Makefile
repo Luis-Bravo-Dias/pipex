@@ -6,7 +6,7 @@
 #    By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 10:58:20 by lleiria-          #+#    #+#              #
-#    Updated: 2022/06/20 15:12:45 by lleiria-         ###   ########.fr        #
+#    Updated: 2022/06/21 15:31:02 by lleiria-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME		=	pipex
 
 DEPS		=	libft/libft.a ft_printf/libftprintf.a
 INCLUDE		=	 -I ft_printf/ft_printf.h -I libft/libft.h -I pipex.h
-SRCS_		=	
+SRCS_		=	main.c 
 
 SRCS		=	$(addprefix $(_SRC), $(SRCS_))
 
