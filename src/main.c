@@ -6,15 +6,17 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:11:45 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/06/21 16:01:00 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/06/23 16:33:14 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	verify(int fd)
+void	verify(int fd, int fork)
 {
 	if (fd == -1)
+		perror("");
+	if (fork == -1)
 		perror("");
 }
 

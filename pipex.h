@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:01:20 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/06/21 15:47:51 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/06/23 16:33:38 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 # include <fcntl.h>
 
 //main.c
-void	verify(int fd);
+void	verify(int fd, int fork);
 
 #endif
