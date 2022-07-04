@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 15:56:00 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/02/08 12:18:57 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:46:31 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	ft_putnbr_base(unsigned int nbr, char *base, unsigned int nbase)
 	int	counter;
 
 	counter = 0;
-	if (nbr < 0)
+	/*if (nbr < 0)
 	{
 		nbr = nbr * -1;
 		counter += ft_putchar('-');
-	}
+	}*/
 	if (nbr >= nbase)
 	{
 		counter += ft_putnbr_base(nbr / nbase, base, nbase);

@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:02:29 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/02/08 12:27:11 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:49:40 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	convert(int n, const char *input, va_list args)
 		c += ft_putchar((char)va_arg(args, int));
 	else if (input[n + 1] == 's')
 		c += ft_putstr(va_arg(args, char *));
-	else if (input[n + 1] == 'd' | input[n + 1] == 'i')
+	else if (input[n + 1] == 'd' || input[n + 1] == 'i')
 		c += ft_putnbr(va_arg(args, int));
 	else if (input[n + 1] == '%')
 		c += ft_putchar('%');
