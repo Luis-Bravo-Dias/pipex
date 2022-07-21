@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:01:20 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/20 17:16:21 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/21 11:26:43 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 //main.c
 void	verify(int fd, int fork, int pipe);
 //pipex.c
-void	pipex(int f1, int f2)
+void	pipex(int f1, int f2);
+void	child_process(int f1, char *cmd1);
 
 #endif

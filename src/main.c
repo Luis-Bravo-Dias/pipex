@@ -6,13 +6,13 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:11:45 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/20 14:44:41 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/21 10:37:17 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-/*void	verify(int fd, int fork, int pipe)
+void	verify(int fd, int fork, int pipe)
 {
 	if (fd == -1)
 		perror("");
@@ -20,7 +20,7 @@
 		perror("");
 	if (pipe == -1)
 		perror("");
-}*/
+}
 
 int	main(int ac, char **av)
 {
