@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:58:58 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/21 16:03:56 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:47:03 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void *test(void *test)
 
 test(strdup())
 
-
-
 void	child_process(int f1, char *cmd1)
 {
 	
@@ -48,10 +46,10 @@ void	child_process(int f1, char *cmd1)
 
 void	pipex(int f1, int f2)
 {
-	int		end[2];
+	int		fd[2];
 	pid_t	parent;
 
-	pipe(end);
+	pipe(fd);
 	parent = fork();
 	if (parent < 0)
 		return (perror(""));
