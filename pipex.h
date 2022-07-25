@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:01:20 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/22 15:07:17 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:45:13 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <errno.h>
 # include <string.h>
