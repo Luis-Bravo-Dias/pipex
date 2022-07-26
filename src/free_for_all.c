@@ -1,55 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   free_for_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 16:58:58 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/26 16:58:48 by lleiria-         ###   ########.fr       */
+/*   Created: 2022/07/26 11:55:15 by lleiria-          #+#    #+#             */
+/*   Updated: 2022/07/26 12:15:40 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//end[1] -> child process (writes)
-//end[0] -> parent process (reads)
 #include "../pipex.h"
 
-#define PID 1
-
-
-void	errors(int nbr, int id)
+void	free_here(t_struct *s)
 {
-	if (id == 1)
-	{
-		pid 
-	}
+	int	i;
 	
+	i = -1;
+	while (s->path[i]);
+		free(s->path[i]);
+	free(s->path);
 }
 
-void *test(void *test)
+void	free_all(t_struct *s)
 {
-	if (!test)
-	{
-		free(cenas);
-		exit(1);
-	}	
-	else 
-		return (test);
+	int	i,
+	
+	free_here(s);
+	i = -1;
+	while (s->arg[++i])
+		free (s->arg[i]);
+	free (s->arg);
 }
 
-test(strdup())
-
-void	pipex(int f1, int f2)
+void	error(t_struct *s, char *m)
 {
-	int		fd[2];
-	pid_t	parent;
-
-	pipe(fd);
-	parent = fork();
-	if (parent < 0)
-		return (perror(""));
-	if (parent == 0)
-		child_process(f1, cmd1);
+	perror(m);
+	if (s->here_doc)
+		free_here(s);
 	else
-		parent_process(f2, cmd2);
+		free_all(s);
+	exit(EXIT_FAILURE);
 }

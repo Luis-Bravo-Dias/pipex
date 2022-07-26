@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:35:51 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/25 17:18:42 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/26 16:35:09 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	heredoc(char **av, int fd)
 		{
 			if (ft_strlen(buffer) == ft_strlen(tmp2))
 				if (!ft_strncmp(tmp2, buffer, ft_strlen(av[2])))
-					break;
+					break ;
 			write(fd, buffer, ft_strlen(buffer));
 			free(buffer);
 		}
@@ -46,6 +46,12 @@ void	heredoc(char **av, int fd)
 	}
 }
 
+/*Se for redirecionado, o outfile deve
+apagar o que estiver lá e escrever o
+novo input, é por isso que a flag O_TRUNC
+é usada, se o outfile não existir, então
+será criado com o O_CREAT e a flag do
+here_doc será 0*/
 void	redirect(t_struct *s, int ac, char **ac)
 {
 	s->here_doc = 0;
@@ -64,7 +70,7 @@ void	redirect(t_struct *s, int ac, char **ac)
 void	append(t_struct *s, int ac, char **av)
 {
 	int	fd;
-	
+
 	if (ac < 6)
 	{
 		ft_printf("Insufficient arguments\n");
@@ -78,7 +84,7 @@ void	append(t_struct *s, int ac, char **av)
 		perror("");
 		exit(EXIT_FAILURE);
 	}
-	heredoc(av, file);
+	heredoc(av, fd);
 }
 
 void	parsing(t_struct *s, int ac, char **av)
@@ -89,5 +95,28 @@ void	parsing(t_struct *s, int ac, char **av)
 	if (!ft_strncmp(av[1], "here_doc", 9))
 		append(s, ac, av);
 	else
-		redirect(p, ac, av);
+		redirect(s, ac, av);
+	s->arg = malloc(sizeof(char *) * ac);
+	if (!s->arg)
+		error(s, "");
+	i = 1;
+	n = -1;
+	while (++i < ac)
+		s->arg[++n] = ft_strdup(av[i]);
+	s->arg[++n] = 0;
+}
+
+void	find_path(t_struct *s, char **env)
+{
+	char	*path;
+	int		i;
+	
+	i = -1;
+	while (env[++i])
+		if (!ft_strncmp(env[i], "PATH", 4))
+			path = ft_strdup(env[i] + 5);
+	if (!path)
+		error(s, "");
+	s->path = ft_split(path, ':');
+	free(path);
 }

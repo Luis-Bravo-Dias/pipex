@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:01:20 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/25 16:45:13 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/26 16:39:28 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,17 @@ void	verify(int fd, int fork, int pipe);
 //pipex.c
 void	pipex(int f1, int f2);
 void	child_process(int f1, char *cmd1);
+//parsing.c
+void	heredoc(char **av, int fd);
+void	redirect(t_struct *s, int ac, char **ac);
+void	append(t_struct *s, int ac, char **av);
+void	parsing(t_struct *s, int ac, char **av);
+void	find_path(t_struct *s, char **env);
+//free_for_all.c
+void	free_here(t_struct *s);
+void	free_all(t_struct *s);
+void	error(t_struct *s, char *m);
+
+
 
 #endif
