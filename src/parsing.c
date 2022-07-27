@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:35:51 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/26 16:35:09 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:14:51 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	heredoc(char **av, int fd)
 	tmp2 = ft_strjoin(tmp, "\n");
 	while (1)
 	{
-		ft_printf("pipe heredoc> ");
+		write(1, "pipe heredoc> ", 14);
+		//ft_printf("pipe heredoc> ");
 		buffer = get_next_line(0);
 		if (buffer)
 		{
@@ -42,7 +43,6 @@ void	heredoc(char **av, int fd)
 		}
 		free(tmp);
 		free(tmp2);
-		free(buffer);
 	}
 }
 
@@ -52,16 +52,18 @@ novo input, é por isso que a flag O_TRUNC
 é usada, se o outfile não existir, então
 será criado com o O_CREAT e a flag do
 here_doc será 0*/
-void	redirect(t_struct *s, int ac, char **ac)
+void	redirect(t_struct *s, int ac, char **av)
 {
 	s->here_doc = 0;
 	s->infile = open(av[1], O_RDONLY);
 	s->outfile = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (s->infile < 0 || s->outfile < 0)
+	if (s->outfile < 0)
 	{
 		perror("");
 		exit(EXIT_FAILURE);
 	}
+	if (s->infile < 0)
+		perror("");
 }
 
 //0644 -> User: read & write Group: read Other: read
@@ -110,7 +112,7 @@ void	find_path(t_struct *s, char **env)
 {
 	char	*path;
 	int		i;
-	
+
 	i = -1;
 	while (env[++i])
 		if (!ft_strncmp(env[i], "PATH", 4))

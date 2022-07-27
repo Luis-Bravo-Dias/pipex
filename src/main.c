@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:11:45 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/26 17:12:12 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:07:23 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ void	child_process(t_struct *s, int i, char **env)
 	if (pipe(s->pipe) == -1)
 		error(s, "");
 	s->pid = fork();
-	if (!s->pid < 0)
+	if (s->pid < 0)
 		error(s, "");
 	if (!s->pid)
 	{
 		close(s->pipe[0]);
 		if (s->id == 0)
 		{
+			if (s->infile < 0)
+				exit(127);
 			dup2(s->infile, STDIN_FILENO);
 			dup2(s->pipe[1], STDOUT_FILENO);
 		}
@@ -32,7 +34,11 @@ void	child_process(t_struct *s, int i, char **env)
 		else
 			dup2(s->pipe[1], STDOUT_FILENO);
 		get_cmd(s, i);
+		execve(s->cmd_path, s->cmd, env);
 	}
+	close (s->pipe[1]);
+	wait(NULL);
+	dup2(s->pipe[0], STDIN_FILENO);
 }
 
 int	main(int ac, char **av, char **env)
@@ -49,7 +55,13 @@ int	main(int ac, char **av, char **env)
 	find_path(&s, env);
 	s.id = -1;
 	while (++s.id < s.cmd_nbr)
-		
+		child_process(&s, s.id + s.here_doc, env);
+	if (s.here_doc)
+		unlink(".heredoc_tmp");
+	free_all(&s);
+	return (0);
+}
+
 	/*(void)av;
 	else
 	{
@@ -74,4 +86,3 @@ int	main(int ac, char **av, char **env)
 		ft_printf("%s\n", path[i]);
 		i++;
 	}*/
-}

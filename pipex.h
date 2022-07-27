@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 11:01:20 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/26 16:39:28 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:55:44 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,14 @@ typedef struct s_struct
 	int		out;
 	int		here_doc;
 	char	*limiter;
-} t_struct;
+}	t_struct;
 
 //main.c
 void	verify(int fd, int fork, int pipe);
-//pipex.c
-void	pipex(int f1, int f2);
-void	child_process(int f1, char *cmd1);
+void	child_process(t_struct *s, int i, char **env);
 //parsing.c
 void	heredoc(char **av, int fd);
-void	redirect(t_struct *s, int ac, char **ac);
+void	redirect(t_struct *s, int ac, char **av);
 void	append(t_struct *s, int ac, char **av);
 void	parsing(t_struct *s, int ac, char **av);
 void	find_path(t_struct *s, char **env);
@@ -59,7 +57,12 @@ void	find_path(t_struct *s, char **env);
 void	free_here(t_struct *s);
 void	free_all(t_struct *s);
 void	error(t_struct *s, char *m);
-
-
+void	error_all(t_struct *s, char *m);
+void	special_error(t_struct *s, char *m);
+//commander.c
+void	get_cmd_path(t_struct *s);
+char	*get_path(char *tmp);
+void	test_path(t_struct *s);
+void	get_cmd(t_struct *s, int n);
 
 #endif

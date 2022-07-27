@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:50:50 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/03/08 12:05:54 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:40:10 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static char	*valid_buffer(char **storage, char **buffer, size_t buflen)
 	char	*tmp;
 	size_t	storlen;
 
-	storlen = ft_strlen(*storage);
+	storlen = ft_strlen2(*storage);
 	returner = (char *)malloc(sizeof(char) * buflen + storlen + 1);
 	if (!returner)
 		return (0);
-	ft_memcpy(returner, *storage, storlen);
-	ft_memcpy(returner + storlen, *buffer, buflen);
+	ft_memcpy2(returner, *storage, storlen);
+	ft_memcpy2(returner + storlen, *buffer, buflen);
 	returner[storlen + buflen] = '\0';
-	tmp = ft_strdup((*buffer) + buflen);
+	tmp = ft_strdup2((*buffer) + buflen);
 	if (*storage)
 		free(*storage);
 	(*storage) = tmp;
@@ -48,12 +48,12 @@ static char	*feed_storage(char **storage, char **buffer, size_t valid)
 		return (returner);
 	}
 	(*buffer)[valid] = '\0';
-	tmp = ft_strchr(*buffer, '\n');
+	tmp = ft_strchr2(*buffer, '\n');
 	if (tmp)
 		returner = valid_buffer(storage, buffer, (tmp - *buffer) + 1);
 	else
 	{
-		tmp = ft_strjoin(*storage, *buffer);
+		tmp = ft_strjoin2(*storage, *buffer);
 		if (*storage)
 			free(*storage);
 		*storage = tmp;
@@ -67,8 +67,6 @@ static char	*valid_storage(char **storage, size_t size)
 	char	*returner;
 	size_t	n;
 
-	if (size < 0)
-		return (0);
 	returner = malloc(sizeof(char) * (size + 1));
 	if (!returner)
 		return (0);
@@ -76,7 +74,7 @@ static char	*valid_storage(char **storage, size_t size)
 	while (++n != size)
 		returner[n] = (*storage)[n];
 	returner[n] = '\0';
-	tmp = ft_strdup(*storage + n);
+	tmp = ft_strdup2(*storage + n);
 	free (*storage);
 	(*storage) = tmp;
 	return (returner);
@@ -93,7 +91,7 @@ char	*get_next_line(int fd)
 		return (0);
 	valid = 1;
 	returner = NULL;
-	buffer = ft_strchr(storage, '\n');
+	buffer = ft_strchr2(storage, '\n');
 	if (!buffer)
 	{
 		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
