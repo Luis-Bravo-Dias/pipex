@@ -6,7 +6,7 @@
 /*   By: lleiria- <lleiria-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:35:51 by lleiria-          #+#    #+#             */
-/*   Updated: 2022/07/27 18:14:51 by lleiria-         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:55:51 by lleiria-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,19 @@ void	heredoc(char **av, int fd)
 	tmp2 = ft_strjoin(tmp, "\n");
 	while (1)
 	{
-		write(1, "pipe heredoc> ", 14);
-		//ft_printf("pipe heredoc> ");
+		ft_printf("pipe heredoc> ");
 		buffer = get_next_line(0);
 		if (buffer)
 		{
-			if (ft_strlen(buffer) == ft_strlen(tmp2))
-				if (!ft_strncmp(tmp2, buffer, ft_strlen(av[2])))
+			if (ft_strlen(tmp2) == ft_strlen(buffer))
+				if (!ft_strncmp(tmp2, buffer, ft_strlen(tmp2)))
 					break ;
 			write(fd, buffer, ft_strlen(buffer));
 			free(buffer);
 		}
-		free(tmp);
-		free(tmp2);
 	}
+	free(tmp);
+	free(tmp2);
 }
 
 /*Se for redirecionado, o outfile deve
